@@ -258,63 +258,68 @@ app.put("/editSauda", async (req, res) => {
 });
 
 
-// app.delete('/deleteCustomer/:id', async (req,res)=>{
-//     let getData = await getUserData()
-//     let deleteId = await deleteData()
-//     const JournalID= req.params.id
-//     const JournalIdex = getData.findIndex(item => item.id.toString() === JournalID);
+app.delete('/deleteCustomer/:id', async (req,res)=>{
+   
+    const JournalID= req.params.id
+    const JournalIdex = getData.findIndex(item => item._id.toString() === JournalID);
 
-//     if(customerIndex !== -1)
-//     {
-//         getData.splice(JournalIdex,1)
-//         res.status(200).json
-//         ({success:true,
-//         message:"Successfully deleted customer!"})
-//     }
-//     else{
-//         res.status(400).json
-//         ({success:false,
-//         message:"Please check the request and params"})
-//     }
-//     }
-// )
+    if(customerIndex !== -1)
+    {
+        getData.splice(JournalIdex,1)
+        res.status(200).json
+        ({success:true,
+        message:"Successfully deleted customer!"})
+    }
+    else{
+        res.status(400).json
+        ({success:false,
+        message:"Please check the request and params"})
+    }
+    }
+)
 
 
-app.delete('/deleteCustomer', async (req, res) => {
-    try {
-        const id = req.params.id; // Get ID from URL parameter
-
-        // Fetch data by ID to check if it exists
-        let getData = await getUserData(id); // Assuming this fetches all data
-        console.log("ID from URL:", id);
-console.log("Customer data:", getData);
-
-        // Check if customer with this ID exists
-        const customerIndex = getData.findIndex(item => item._id.toString() === id);
+// app.delete('/deleteCustomer', async (req, res) => {
+//     try {
         
 
-        if (customerIndex === -1) {
-            return res.status(404).json({
-                success: false,
-                message: "Customer not found!"
-            });
-        }
+//         // Fetch data by ID to check if it exists
+//         let getData = await getUserData(); // Assuming this fetches all data
+//         console.log("Customer data:", getData);
 
-        // Delete customer from MongoDB
-        await deleteData(id); // Assuming deleteData function handles deletion by ID in the database
+//         // Check if customer with this ID exists
+//         const customerIndex = getData.findIndex(item => item._id.toString() == req.params.id);
+//         console.log("req.params.id : ", req.params.id);
+//         console.log(getData.data.id);
+        
+        
+        
 
-        res.status(200).json({
-            success: true,
-            message: "Successfully deleted customer!"
-        });
-    } catch (error) {
-        console.error("Error deleting customer:", error);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error!"
-        });
-    }
-});
+//         if (customerIndex === -1) {
+//             return res.status(404).json({
+//                 success: false,
+//                 message: "Customer not found!"
+//             });
+//         }
+
+//         // Delete customer from MongoDB
+//         await deleteData(id); // Assuming deleteData function handles deletion by ID in the database
+
+//         res.status(200).json({
+//             success: true,
+//             message: "Successfully deleted customer!"
+//         });
+//     } catch (error) {
+//         console.error("Error deleting customer:", error);
+//         res.status(500).json({
+//             success: false,
+//             message: "Internal server error!"
+//         });
+//     }
+// });
+
+
+
 
 
 module.exports = app;

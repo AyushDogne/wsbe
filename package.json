@@ -13,5 +13,6 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mongoose": "^8.8.1"
-  }
+  },
+   "proxy": "http://localhost:8081"
 }
